@@ -1,0 +1,38 @@
+<div class="fullPage">
+    <div class="topSideContainer">
+        <div class="topInnerSideContainer">
+            <div class="pointBox">
+                Your point:{{pointValue}}
+            </div>
+        </div>
+        <div *ngIf="gameOverStatus" class="topInnerSideContainer">
+            <div class="gameOver">
+                <div class="gameOverBox">
+                    Game Over :( <button class="newGameButton" (click)="newGame()">NewGame</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="nextLevelStatus" class="topInnerSideContainer">
+            <div class="gameOver">
+                <div class="gameOverBox">
+                    You Win :) <button class="nextLevelGameButton" (click)="nextLevel()">NextLevel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bomberBox">
+        <div class="box">
+            <mat-grid-list [cols]="columnCount" rowHeight="90px" class="gridBox"
+                [ngClass]="pointerStatus?'pointer':'null'">
+                <mat-grid-tile class="gridCell" [ngClass]="gameDataId[i]?'correctBox':'uncorrectBox'"
+                    [ngClass]="bombData[i]?'bombBox':'uncorrectBox'" *ngFor="let item of rowValue let i=index"
+                    (click)="dataShow(item,i)">
+                    <div *ngIf="bombIconStatus[i]" [ngClass]="gameDataId[i]?'bombImageNotShow':'bombImageShow'"  [ngClass]="bombData[i]?'bombImageNotShow':'bombImageShow'"><img [src]="item" class="image"></div>
+                    <div *ngIf="bombIconStatus[i]==false">{{item}}</div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div>
+
+</div>
+
